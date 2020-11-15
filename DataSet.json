@@ -3,24 +3,24 @@
     "name": "Justin",
     "role": "Coordinator",
     "nickname": "i don't know",
-    "avatar": "justin.jpg"
+    "biopic": "justin.jpg"
   },
   "John": {
     "name": "John",
     "role": "super chill prof",
     "nickname": "just john",
-    "avatar": "john.jpg"
+    "biopic": "john.jpg"
   },
   "Joe": {
     "name": "Joe",
     "role": "Prof",
     "nickname": "Teddy Bear",
-    "avatar": "joe.jpg"
+    "biopic": "joe.jpg"
   },
   "Pan": {
     "name": "Pan",
     "role": "Code Ninja",
     "nickname": "Spider Pan",
-    "avatar": "pan.jpg"
+    "biopic": "pan.jpg"
   }
 }

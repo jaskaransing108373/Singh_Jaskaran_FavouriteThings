@@ -7,7 +7,8 @@
         $result = getSingleUser($pdo, $targetID);
 
         return $result;
-    } else {
+    } 
+    else {
         $allUsers = getAllUsers($pdo);
 
         return $allUsers;
