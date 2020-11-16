@@ -2,16 +2,12 @@
 import { fetchData } from "./modules/TheDataMiner.js";
 
 (() => {
+  
   // stub * just a place for non-component-specific stuff
   console.log('loaded');
 
   function popErrorBox(message) {
     alert("Something has gone horribly, horribly wrong");
-  }
-
-  function handleDataSet(data) {
-    // populate a light box
-    let lightbox = document.querySelector(".lightbox");
   }
 
   function retrieveProjectInfo(event) {
@@ -38,5 +34,7 @@ import { fetchData } from "./modules/TheDataMiner.js";
     userSection.addEventListener("click", retrieveProjectInfo);
   }
 
-  fetchData("./includes/index.php").then(data => renderPortfolioThumbnails(data)).catch(err => console.log(err));
+  fetchData("./includes/index.php").then(data => renderPortfolioThumbnails(data)).catch(err => { console.log(err); popErrorBox(err); });
+
+
 })();
