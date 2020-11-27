@@ -1,8 +1,11 @@
 // import your packages here
-import { fetchData } from "./modules/TheDataMiner.js";
+import { fetchData, postData  } from "./modules/TheDataMiner.js";
 
 (() => {
-  
+  let lightBox = document.querySelector(".info"),
+    title = document.querySelector(".info h3"),
+    UserDescription = document.querySelector(".info p"),
+    closeButton = document.querySelector(".closeButton");
   // stub * just a place for non-component-specific stuff
   console.log('loaded');
 
@@ -10,31 +13,46 @@ import { fetchData } from "./modules/TheDataMiner.js";
     alert("Something has gone horribly, horribly wrong");
   }
 
+  function handleDataSet(data) {
+    let Name = data[0].name,
+      des = data[0].description;
+
+    title.textContent = Name;
+    UserDescription.textContent = des;
+
+    lightBox.classList.add("open");
+    document.body.classList.add("open");
+  }
+
+  function close() {
+    lightBox.classList.remove("open");
+    document.body.classList.remove("open");
+  }
+  closeButton.addEventListener("click", close);
+
   function retrieveProjectInfo(event) {
     // test for an ID
 
     if (!event.target.id) { return }
 
-    fetchData(`./includes/index.php?id=${event.target.id}`).then(data => console.log(data)).catch(err => console.log(err));
+    fetchData(`./includes/index.php?id=${event.target.id}`).then(data => handleDataSet(data)).catch(err => console.log(err));
   }
 
   function renderPortfolioThumbnails(thumbs) {
-    let userSection = document.querySelector('.user-section'),
-      userTemplate = document.querySelector('#user-template').content;
+    let mainSectiona = document.querySelector('#mainSection'),
+      mainTemplate = document.querySelector('#infoTemp').content;
 
     for (let user in thumbs) {
-      let currentUser = userTemplate.cloneNode(true),
-        currentUserText = currentUser.querySelector('.user').children;
+      let currentSec = mainTemplate.cloneNode(true),
+        currentUserText = currentSec.querySelector('.user').children;
 
-      currentUserText[1].src = `images/${thumbs[user].avatar}`;
-      currentUserText[1].id = thumbs[user].id;
-      // add this new user to the view
-      userSection.appendChild(currentUser);
+      currentUserText[0].src = `images/${thumbs[user].image}`;
+      currentUserText[0].id = thumbs[user].id;
+
+      mainSectiona.appendChild(currentSec);
     }
-    userSection.addEventListener("click", retrieveProjectInfo);
+    mainSectiona.addEventListener("click", retrieveProjectInfo);
   }
 
   fetchData("./includes/index.php").then(data => renderPortfolioThumbnails(data)).catch(err => { console.log(err); popErrorBox(err); });
-
-
 })();
