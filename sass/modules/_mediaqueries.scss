@@ -1,8 +1,14 @@
-@media screen and (min-width: 480px) {
-    // whatever styles you need here
-    body { background-color:purple; }
-}
+@media screen and (min-width: 1080px) {
+    header {
+        h3 {
+            font-size: 50px;
+        }
+    }
 
-// this is a SASS comment 
-
-/* css comments work too */
+   #mainSection {
+       flex-direction: row;
+       flex-wrap: wrap;
+       display: flex;
+   }
+   
+ }
